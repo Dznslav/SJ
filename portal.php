@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="index.html">Back to main page</a>
-            <a class="nav-link" href="">Login/Register</a>
+            <a class="nav-link" href="portalmainpage.php">Login/Register</a>
           </div>
         </div>
       </div>
