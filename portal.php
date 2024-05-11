@@ -4,7 +4,7 @@ session_start();
 // session check
 if (!isset($_SESSION['user_id'])) {
     // redirect to login if not logged in
-    header("Location: login.php");
+    header("Location: logreg.php");
     exit();
 }
 
@@ -56,7 +56,7 @@ if ($conn->connect_error) {
             width: 300px;
             padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
             background-color: #f9f9f9;
@@ -85,11 +85,15 @@ if ($conn->connect_error) {
 
         .pagination {
             text-align: center;
+            justify-content: center;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .page-button {
             display: inline-block;
+            justify-content: center;
+            align-items: center;
             padding: 5px 10px;
             margin: 0 5px;
             background-color: #f0f0f0;
@@ -102,8 +106,17 @@ if ($conn->connect_error) {
             background-color: #ccc;
         }
 
+        .logoutbut {
+            text-align: right;
+            justify-content: right;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
         .logout-button {
             margin-top: 20px;
+            align-items: center;
+            justify-content: center;
             background-color: #f44336;
             color: white;
             padding: 10px 20px;
@@ -121,7 +134,7 @@ if ($conn->connect_error) {
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #f44336;
+            background-color: gray;
             color: white;
             padding: 5px 10px;
             border: none;
@@ -202,9 +215,11 @@ if ($conn->connect_error) {
 </div>
 
 <!-- logout button -->
-<form action="logout.php" method="post">
-    <button type="submit" class="logout-button">Выйти</button>
-</form>
+<div class="logoutbut">
+    <form action="logout.php" method="post">
+        <button type="submit" class="logout-button">Выйти</button>
+    </form>
+</div>
 
 <footer style="background-color: #ffffff;">
   <hr>
