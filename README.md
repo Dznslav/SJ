@@ -1,2 +1,2 @@
 # Laurentsyeu_project
-project SJ
+project jazyki webu
