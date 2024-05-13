@@ -1,14 +1,6 @@
 <?php
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'portal';
 
-$conn = new mysqli($host, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'database.php';
 
 // ddata processing from form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

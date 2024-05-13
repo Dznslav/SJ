@@ -5,17 +5,8 @@ session_start(); // session start
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // check if file chosen
     if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
-        // database connection
-        $host = 'localhost';
-        $username = 'root';
-        $password = '';
-        $database = 'portal';
 
-        $conn = new mysqli($host, $username, $password, $database);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        include 'database.php'; // database connection
 
         // upload photo to server
         $target_dir = "uploads/";
@@ -54,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     // if sent by GET method
-    header("Location: error.php");
+    echo "Error.";
     exit();
 }
 ?>
