@@ -71,6 +71,11 @@
         .btn-secondary:hover {
             background-color: #495057;
         }
+
+        .upload {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -84,16 +89,16 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="portal.php">Portal</a>
-            <a class="nav-link" href="upload.php">Upload</a>
-            <a class="nav-link active" href="logreg.php">Login/Registration</a>
-            <a class="nav-link active" href="index.html">Main Page</a>
+            <a class="nav-link active" href="upload.php">Upload</a>
+            <a class="nav-link" href="logreg.php">Login/Registration</a>
+            <a class="nav-link" href="index.html">Main Page</a>
           </div>
         </div>
       </div>
     </nav>
 </header>
 
-<h1>Upload Photo</h1>
+<h1 class="upload">UPLOAD YOUR PHOTO</h1>
 
 <form action="uploadprocessing.php" method="post" enctype="multipart/form-data" class="upload-form">
     <div class="form-group">

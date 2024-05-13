@@ -1,26 +1,6 @@
 <?php
-session_start();
-
-// session check
-if (!isset($_SESSION['user_id'])) {
-    // redirect to login if not logged in
-    header("Location: login.php");
-    exit();
-}
-
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'portal';
-
-$conn = new mysqli($host, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-?>
-
+include 'database.php';
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +36,7 @@ if ($conn->connect_error) {
             width: 300px;
             padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
             background-color: #f9f9f9;
@@ -85,11 +65,15 @@ if ($conn->connect_error) {
 
         .pagination {
             text-align: center;
+            justify-content: center;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .page-button {
             display: inline-block;
+            justify-content: center;
+            align-items: center;
             padding: 5px 10px;
             margin: 0 5px;
             background-color: #f0f0f0;
@@ -102,9 +86,18 @@ if ($conn->connect_error) {
             background-color: #ccc;
         }
 
+        .logoutbut {
+            text-align: right;
+            justify-content: right;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
         .logout-button {
             margin-top: 20px;
-            background-color: #f44336;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -121,7 +114,7 @@ if ($conn->connect_error) {
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #f44336;
+            background-color: gray;
             color: white;
             padding: 5px 10px;
             border: none;
@@ -144,10 +137,10 @@ if ($conn->connect_error) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" aria-current="page" href="portal.php">Portal</a>
+            <a class="nav-link active" aria-current="page" href="portal.php">Portal</a>
             <a class="nav-link" href="upload.php">Upload</a>
-            <a class="nav-link active" href="logreg.php">Login/Registration</a>
-            <a class="nav-link active" href="index.html">Main Page</a>
+            <a class="nav-link" href="logreg.php">Login/Registration</a>
+            <a class="nav-link" href="index.html">Main Page</a>
           </div>
         </div>
       </div>
@@ -185,7 +178,7 @@ if ($conn->connect_error) {
             }
         }
     } else {
-        echo "Нет данных для отображения";
+        echo "Nothing to display. Upload some photos to change this!";
     }
     ?>
 </div>
@@ -202,9 +195,11 @@ if ($conn->connect_error) {
 </div>
 
 <!-- logout button -->
-<form action="logout.php" method="post">
-    <button type="submit" class="logout-button">Выйти</button>
-</form>
+<div class="logoutbut">
+    <form action="logout.php" method="post">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+</div>
 
 <footer style="background-color: #ffffff;">
   <hr>

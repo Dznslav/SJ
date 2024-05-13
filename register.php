@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $username, $hashed_password);
 
     if ($stmt->execute() === TRUE) {
-        echo "Регистрация прошла успешно.";
+        echo "Successfull registration!";
     } else {
-        echo "Ошибка при регистрации: " . $conn->error;
+        echo "Registration error: " . $conn->error;
     }
 
     $stmt->close();
