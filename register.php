@@ -1,6 +1,14 @@
 <?php
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'portal';
 
-include 'database.php';
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // ddata processing from form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $username, $hashed_password);
 
     if ($stmt->execute() === TRUE) {
-        echo "Регистрация прошла успешно.";
+        echo "Successfull registration!";
     } else {
-        echo "Ошибка при регистрации: " . $conn->error;
+        echo "Registration error: " . $conn->error;
     }
 
     $stmt->close();

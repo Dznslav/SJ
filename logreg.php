@@ -74,7 +74,7 @@
             <a class="nav-link" aria-current="page" href="portal.php">Portal</a>
             <a class="nav-link" href="upload.php">Upload</a>
             <a class="nav-link active" href="logreg.php">Login/Registration</a>
-            <a class="nav-link active" href="index.html">Main Page</a>
+            <a class="nav-link" href="index.html">Main Page</a>
           </div>
         </div>
       </div>
@@ -105,12 +105,12 @@
                 <h2>Registration</h2>
                 <form action="register.php" method="post">
                     <div class="form-group">
-                        <label for="reg_username">Username:</label>
-                        <input type="text" id="reg_username" name="reg_username" required>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
                     </div>
                     <div class="form-group">
-                        <label for="reg_password">Password:</label>
-                        <input type="password" id="reg_password" name="reg_password" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Register</button>

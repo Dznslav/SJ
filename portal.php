@@ -97,7 +97,7 @@ include 'database.php';
             margin-top: 20px;
             align-items: center;
             justify-content: center;
-            background-color: #f44336;
+            background-color: #333;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -137,10 +137,10 @@ include 'database.php';
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" aria-current="page" href="portal.php">Portal</a>
+            <a class="nav-link active" aria-current="page" href="portal.php">Portal</a>
             <a class="nav-link" href="upload.php">Upload</a>
-            <a class="nav-link active" href="logreg.php">Login/Registration</a>
-            <a class="nav-link active" href="index.html">Main Page</a>
+            <a class="nav-link" href="logreg.php">Login/Registration</a>
+            <a class="nav-link" href="index.html">Main Page</a>
           </div>
         </div>
       </div>
@@ -178,7 +178,7 @@ include 'database.php';
             }
         }
     } else {
-        echo "Нет данных для отображения";
+        echo "Nothing to display. Upload some photos to change this!";
     }
     ?>
 </div>
@@ -197,7 +197,7 @@ include 'database.php';
 <!-- logout button -->
 <div class="logoutbut">
     <form action="logout.php" method="post">
-        <button type="submit" class="logout-button">Выйти</button>
+        <button type="submit" class="logout-button">Logout</button>
     </form>
 </div>
 
