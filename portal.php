@@ -1,6 +1,60 @@
 <?php
 include 'database.php';
-?> 
+
+class PortalPage {
+    private $conn;
+    private $blocksPerPage = 9;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function displayPhotos() {
+        $sql = "SELECT * FROM photos";
+        $result = $this->conn->query($sql);
+
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($page - 1) * $this->blocksPerPage;
+        $end = $start + $this->blocksPerPage - 1;
+        $counter = 0;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $counter++;
+                if ($counter > $end) break;
+                if ($counter >= $start) {
+                    echo "<div class='photo-block'>";
+                    echo "<img src='" . $row['filepath'] . "' alt='Photo'>";
+                    echo "<p>" . $row['comment'] . "</p>";
+                    if ($_SESSION['is_admin']) {
+                        echo "<form action='delete.php' method='post'>";
+                        echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
+                        echo "<button type='submit' class='delete-button'>Delete</button>";
+                        echo "</form>";
+                    }
+                    echo "</div>";
+                }
+            }
+        } else {
+            echo "Nothing to display. Upload some photos to change this!";
+        }
+    }
+
+    public function displayPagination() {
+        $sql = "SELECT * FROM photos";
+        $result = $this->conn->query($sql);
+        $total_pages = ceil($result->num_rows / $this->blocksPerPage);
+        
+        echo "<div class='pagination'>";
+        for ($i = 1; $i <= $total_pages; $i++) {
+            echo "<a href='portal.php?page=$i' class='page-button'>$i</a>";
+        }
+        echo "</div>";
+    }
+}
+
+$page = new PortalPage($conn);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,7 +182,8 @@ include 'database.php';
     </style>
 </head>
 <body>
-<header>
+
+    <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
       <div class="container-fluid">
         <a class="navbar-brand" href="portal.php">Dzianis Portal</a>
@@ -147,61 +202,23 @@ include 'database.php';
     </nav>
 </header>
 
-<!-- big div -->
-<div class="photo-container">
-    <?php
-    // extracting photo and comment from db
-    $sql = "SELECT * FROM photos";
-    $result = $conn->query($sql);
+    <div class="container">
+        <div class="photo-container">
+            <?php $page->displayPhotos(); ?>
+        </div>
 
-    $blocks_per_page = 9;
-    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $start = ($page - 1) * $blocks_per_page;
-    $end = $start + $blocks_per_page - 1;
-    $counter = 0;
+        <!-- Pagination -->
+        <?php $page->displayPagination(); ?>
 
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $counter++;
-            if ($counter > $end) break;
-            if ($counter >= $start) {
-                echo "<div class='photo-block'>";
-                echo "<img src='" . $row['filepath'] . "' alt='Photo'>";
-                echo "<p>" . $row['comment'] . "</p>";
-                if ($_SESSION['is_admin']) {            // admin check
-                    echo "<form action='delete.php' method='post'>";
-                    echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
-                    echo "<button type='submit' class='delete-button'>Delete</button>";
-                    echo "</form>";
-                }
-                echo "</div>";
-            }
-        }
-    } else {
-        echo "Nothing to display. Upload some photos to change this!";
-    }
-    ?>
-</div>
+        <!-- Logout button -->
+        <div class="logoutbut">
+            <form action="logout.php" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
 
-<!-- pagination -->
-<div class="pagination">
-    <?php
-    // page buttons
-    $total_pages = ceil($result->num_rows / $blocks_per_page);
-    for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<a href='portal.php?page=$i' class='page-button'>$i</a>";
-    }
-    ?>
-</div>
-
-<!-- logout button -->
-<div class="logoutbut">
-    <form action="logout.php" method="post">
-        <button type="submit" class="logout-button">Logout</button>
-    </form>
-</div>
-
-<footer style="background-color: #ffffff;">
+    <footer style="background-color: #ffffff;">
   <hr>
   <div class="container p-4">
     <div class="row">
@@ -219,8 +236,6 @@ include 'database.php';
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-1BmE4kWBq4u5j7Z3zGzFp2Z1fF
-6VbZl3Jw2m6Xz2nFh4Jjzr4z+Jm9c
-2Z6zvJz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
