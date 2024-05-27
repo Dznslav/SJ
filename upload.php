@@ -112,12 +112,24 @@
     <button type="submit" class="btn btn-primary">Upload Image</button>
 </form>
 
-<form action="logout.php" method="post">
-    <button class="btn btn-secondary" type="submit">Выйти</button>
-</form>
+<footer style="background-color: #ffffff;">
+  <hr>
+  <div class="container p-4">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 mb-4">
+        <p>
+          “It is an illusion that photos are made with the camera… they are made with the eye, heart, and head.”
+        </p>
+        <h5 class="mb-3" style="letter-spacing: 2px; color: #000000;">-Henri Cartier-Bresson</h5>
+      </div>
+    </div>
+  </div>
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2024 Copyright:
+    <a class="text-dark" href="https://www.instagram.com/dzns_ph/">Dzianis Laurentsyeu</a>
+  </div>
+</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-1BmE4kWBq4u5j7Z3zGzFp2Z1fF
-6VbZl3Jw2m6Xz2nFh4Jjzr4z+Jm9c
-2Z6zvJz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
